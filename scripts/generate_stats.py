@@ -147,7 +147,7 @@ def telemetry(s: dict) -> Doc:
     d = Doc(W, H, title=f"{LOGIN} — GitHub telemetry")
     glow(d, "cellGlow", std=3.2, strength=1)
     sync = dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
-    o, c = panel(d, W, H, "SCENE 06 — TELEMETRY", f"LAST SYNC  {sync}", glow_color=C["cyan"])
+    o, c = panel(d, W, H, "SCENE 05 — TELEMETRY", f"LAST SYNC  {sync}", glow_color=C["cyan"])
     d.add(o, stars(61, 70, W, H, rmax=1.2, twinkle=True))
     d.css.append("""
 @keyframes tmBeam{0%{transform:translateX(0);opacity:0}8%{opacity:1}72%{opacity:1}80%,100%{transform:translateX(1180px);opacity:0}}

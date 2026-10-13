@@ -113,19 +113,20 @@ FEATURED = [
         "motif": "shield",       # radar sweep + shield + BLOCKED request log
     },
     {
-        "key": "event-horizon",
+        "key": "kaledo",
         "code": "OP-05",
-        "title": "EVENT HORIZON",
-        "category": "quantum",
-        "tagline": "Scroll past the point of no return.",
-        "desc": "A cinematic scroll story built around a real-time black hole. A WebGL2 shader traces each pixel's "
-                "photon path through Schwarzschild spacetime, so the shadow, photon ring, lensed disk and Doppler "
-                "beaming all come from the physics — plus a GPU particle supernova and a generative Web Audio score.",
-        "highlights": ["Per-pixel GR ray tracing in GLSL", "GPU particle supernova", "PhishGuard-protected via a custom Astro integration"],
-        "stack": ["WebGL2", "GLSL", "Astro", "TypeScript", "Web Audio"],
-        "repo": f"{GH}/event-horizon",
-        "live": "",
-        "motif": "blackhole",    # black hole: shadow, photon ring, lensed accretion disk
+        "title": "KALEDO",
+        "category": "fullstack-web",
+        "accent": ("#FFB547", "#8B5CFF"),   # amber/violet so it stands apart from OP-06
+        "tagline": "Where campus skills meet industry demand.",
+        "desc": "An academia × industry portal connecting students, recruiters, academicians and institutions. "
+                "Supabase auth with RLS-enforced roles and OTP institution verification, plus a weighted "
+                "skill-match engine that ranks internships and surfaces the exact skill gaps to close.",
+        "highlights": ["Supabase auth · RLS-enforced roles · Google OAuth", "OTP institution verification via Edge Functions", "Weighted skill-match engine + skill-gap analysis"],
+        "stack": ["Astro", "React", "TypeScript", "Supabase", "PostgreSQL", "Three.js"],
+        "repo": f"{GH}/Kaledo",
+        "live": "https://kaledo-eta.vercel.app",
+        "motif": "skillmatch",   # particle network, student skills -> match engine -> ranked roles
     },
     {
         "key": "nosql",
@@ -146,55 +147,16 @@ FEATURED = [
 
 # ------------------------------------------------------------ 04 archive --
 ARCHIVE = [
-    {"title": "Kaledo", "category": "fullstack-web", "line": "Academia × industry portal: skill mapping, internships, verification", "repo": f"{GH}/Kaledo", "live": "https://kaledo-eta.vercel.app"},
     {"title": "Jeevika", "category": "ai-ml", "line": "Voice-first multilingual AI health assistant for rural India · SIH 2025", "repo": f"{GH}/Jeevika..", "live": ""},
     {"title": "Quantum Tic-Tac-Toe", "category": "quantum", "line": "Tic-tac-toe on a 9-qubit Qiskit circuit vs a minimax AI", "repo": f"{GH}/Quantum-Tic-Tac-Toe-Gui-Version", "live": ""},
     {"title": "Quantum Snake", "category": "quantum", "line": "Snake on Qiskit: superposed heads, entangled food, many-worlds AI", "repo": f"{GH}/Quantum-Snake-Game", "live": ""},
     {"title": "P2P Comm", "category": "mobile", "line": "Offline, end-to-end encrypted Flutter messenger over BLE + mDNS", "repo": f"{GH}/p2p-comm-app", "live": ""},
     {"title": "AgentX Vision", "category": "ai-ml", "line": "In-browser AR object detection with on-device Whisper voice control", "repo": f"{GH}/solid-funicular", "live": ""},
-    {"title": "B-2 Spirit Cinematic", "category": "fullstack-web", "line": "Scroll-directed Three.js stealth-bomber flythrough in six camera shots", "repo": f"{GH}/pg_webtest1", "live": ""},
     {"title": "ChatPal 2.0", "category": "fullstack-web", "line": "Flask + Socket.IO chat with rooms, polls, uploads and in-chat Gemini/GPT", "repo": f"{GH}/ChatPal2.0", "live": ""},
-    {"title": "VTOP Portal", "category": "fullstack-web", "line": "Full-stack university portal for four roles with RBAC", "repo": f"{GH}/VTOP", "live": ""},
     {"title": "FFCS Simulator", "category": "fullstack-web", "line": "Timed VIT course-registration simulator with clash detection", "repo": f"{GH}/ffcs-simulator-fall2026-27", "live": ""},
     {"title": "Smart Irrigation", "category": "iot-embedded", "line": "Arduino plant waterer with overwatering prevention and fault detection", "repo": f"{GH}/Smart-Irrigation-System", "live": ""},
     {"title": "Offline Notes", "category": "fullstack-web", "line": "Offline-first PWA notes with IndexedDB and background sync", "repo": f"{GH}/Offline-notes", "live": ""},
 ]
-
-# --------------------------------------------------------- 05 mission log --
-TIMELINE = [
-    # (when, title, org, detail, category, kind)  kind: role | award | build | edu | writing
-    ("NOW", "Writing a research paper + a book", "Quantum computing × game development",
-     "Paper on quantum-computing-based game development; a beginner's book on quantum game dev in Python.", "quantum", "writing"),
-    ("JAN 2026 — NOW", "IEEE Junior Core Member", "IEEE · VIT Vellore",
-     "Technical initiatives and student engineering projects; organised the Sense-a-thon event.", "fullstack-web", "role"),
-    ("JAN — JUL 2026", "Web Developer", "10th IEEE International Test Conference (ITC) India 2026",
-     "Built and ran the official conference website: event info, real-time updates, responsive UI.", "fullstack-web", "role"),
-    ("2025", "Smart India Hackathon — Internal Finalist", "SIH 2025",
-     "Led an offline AI health LLM for remote, underserved communities (Jeevika).", "ai-ml", "award"),
-    ("JUL 2025", "B.Tech Computer Science begins", "Vellore Institute of Technology",
-     "Focus: web development, cybersecurity, IoT, AI/ML.", "systems-cli", "edu"),
-    ("2024 — 2025", "President, Cyber Genie", "Kothari International School, Noida",
-     "Led the club to #1 ranking three years running; workshops, events, competitions, mentoring.", "security", "role"),
-    ("SCHOOL ERA", "All India Rank 1 — National AI Idea-thon", "1M1B",
-     "Top national rank for an AI idea pitch.", "ai-ml", "award"),
-    ("SCHOOL ERA", "Podium — Code Day Hackathon", "IIT Delhi",
-     "Placed on the podium at IIT Delhi's Code Day hackathon.", "security", "award"),
-    ("2023 — 2024", "Vice President, Cyber Genie", "Kothari International School, Noida",
-     "Grew the club and its technical outreach on the way to #1.", "security", "role"),
-]
-
-# ------------------------------------------------------------- credits --
-CREDITS = [
-    ("DIRECTED BY", "Shrish Verma"),
-    ("WRITTEN IN", "Python · TypeScript · C++ · Qiskit"),
-    ("CINEMATOGRAPHY", "WebGL2 · Three.js · GLSL"),
-    ("SECURITY CONSULTANT", "Zero-Trust (PhishGuard.js)"),
-    ("QUANTUM EFFECTS", "Qiskit Aer"),
-    ("COMPUTER VISION", "YOLOv8 · OpenVINO · Depth Anything"),
-    ("FILMED ON LOCATION", "Vellore · Noida · India"),
-    ("SPECIAL THANKS", "IEEE VIT · Cyber Genie · late-night coffee"),
-]
-CREDITS_TAG = "No qubits were harmed in the making of this profile."
 
 # ----------------------------------------------------------- section heads --
 SECTIONS = [
@@ -202,8 +164,7 @@ SECTIONS = [
     ("02", "THE ARSENAL", "tools of the trade"),
     ("03", "FEATURED OPERATIONS", "six missions, declassified"),
     ("04", "THE ARCHIVE", "more transmissions"),
-    ("05", "MISSION LOG", "the story so far"),
-    ("06", "TELEMETRY", "live signal from github"),
+    ("05", "TELEMETRY", "live signal from github"),
 ]
 
 BUTTONS = [

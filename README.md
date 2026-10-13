@@ -36,46 +36,36 @@
 <p align="center"><a href="https://github.com/Arrow-Ghost/PhishGuard1.0"><img src="./assets/op-phishguard.svg" width="100%" alt="OP-04 PHISHGUARD.JS — Every rogue script dies at the border. A zero-trust runtime shield for the browser. Proxies around fetch and localStorage block token exfiltration to untrusted origins, a MutationObserver strips injected scripts, and telemetry streams over WebSockets into a live SOC dashboard with a typosquat + CVE dependency scanner. Stack: JavaScript, React, Node.js, Express, WebSockets, SQLite."/></a></p>
 <p align="center"><sub><a href="https://github.com/Arrow-Ghost/PhishGuard1.0"><b>◆ source</b> · Arrow-Ghost/PhishGuard1.0</a></sub></p>
 
-<p align="center"><a href="https://github.com/Arrow-Ghost/event-horizon"><img src="./assets/op-event-horizon.svg" width="100%" alt="OP-05 EVENT HORIZON — Scroll past the point of no return. A cinematic scroll story built around a real-time black hole. A WebGL2 shader traces each pixel's photon path through Schwarzschild spacetime, so the shadow, photon ring, lensed disk and Doppler beaming all come from the physics — plus a GPU particle supernova and a generative Web Audio score. Stack: WebGL2, GLSL, Astro, TypeScript, Web Audio."/></a></p>
-<p align="center"><sub><a href="https://github.com/Arrow-Ghost/event-horizon"><b>◆ source</b> · Arrow-Ghost/event-horizon</a></sub></p>
+<p align="center"><a href="https://kaledo-eta.vercel.app"><img src="./assets/op-kaledo.svg" width="100%" alt="OP-05 KALEDO — Where campus skills meet industry demand. An academia × industry portal connecting students, recruiters, academicians and institutions. Supabase auth with RLS-enforced roles and OTP institution verification, plus a weighted skill-match engine that ranks internships and surfaces the exact skill gaps to close. Stack: Astro, React, TypeScript, Supabase, PostgreSQL, Three.js."/></a></p>
+<p align="center"><sub><a href="https://kaledo-eta.vercel.app"><b>▶ live</b> · kaledo-eta.vercel.app</a> &nbsp;&nbsp;│&nbsp;&nbsp; <a href="https://github.com/Arrow-Ghost/Kaledo"><b>◆ source</b> · Arrow-Ghost/Kaledo</a></sub></p>
 
 <p align="center"><a href="https://nosql-jade.vercel.app"><img src="./assets/op-nosql.svg" width="100%" alt="OP-06 NOT ONLY SQL — 22,000 particles. 20 chapters. Not only SQL. A scroll-driven WebGL seminar on NoSQL. A 22k-particle GPU field morphs through 20 chapters next to a 3D sharded-cluster simulation with hash routing, replication and failover, an R+W>N quorum lab, and a live quiz scored server-side on Express + MongoDB Atlas. Stack: TypeScript, Three.js, WebGL, Express, MongoDB Atlas."/></a></p>
 <p align="center"><sub><a href="https://nosql-jade.vercel.app"><b>▶ live</b> · nosql-jade.vercel.app</a> &nbsp;&nbsp;│&nbsp;&nbsp; <a href="https://github.com/Arrow-Ghost/nosql"><b>◆ source</b> · Arrow-Ghost/nosql</a></sub></p>
 
 <p align="center"><img src="./assets/h-04.svg" width="100%" alt="Chapter 04: The Archive. more transmissions"/></p>
 <p align="center">
-  <a href="https://kaledo-eta.vercel.app"><img src="./assets/arc-kaledo.svg" width="49%" alt="Kaledo — Academia × industry portal: skill mapping, internships, verification"/></a>
   <a href="https://github.com/Arrow-Ghost/Jeevika.."><img src="./assets/arc-jeevika.svg" width="49%" alt="Jeevika — Voice-first multilingual AI health assistant for rural India · SIH 2025"/></a>
-</p>
-<p align="center">
   <a href="https://github.com/Arrow-Ghost/Quantum-Tic-Tac-Toe-Gui-Version"><img src="./assets/arc-quantum-tic-tac-toe.svg" width="49%" alt="Quantum Tic-Tac-Toe — Tic-tac-toe on a 9-qubit Qiskit circuit vs a minimax AI"/></a>
+</p>
+<p align="center">
   <a href="https://github.com/Arrow-Ghost/Quantum-Snake-Game"><img src="./assets/arc-quantum-snake.svg" width="49%" alt="Quantum Snake — Snake on Qiskit: superposed heads, entangled food, many-worlds AI"/></a>
-</p>
-<p align="center">
   <a href="https://github.com/Arrow-Ghost/p2p-comm-app"><img src="./assets/arc-p2p-comm.svg" width="49%" alt="P2P Comm — Offline, end-to-end encrypted Flutter messenger over BLE + mDNS"/></a>
-  <a href="https://github.com/Arrow-Ghost/solid-funicular"><img src="./assets/arc-agentx-vision.svg" width="49%" alt="AgentX Vision — In-browser AR object detection with on-device Whisper voice control"/></a>
 </p>
 <p align="center">
-  <a href="https://github.com/Arrow-Ghost/pg_webtest1"><img src="./assets/arc-b-2-spirit-cinematic.svg" width="49%" alt="B-2 Spirit Cinematic — Scroll-directed Three.js stealth-bomber flythrough in six camera shots"/></a>
+  <a href="https://github.com/Arrow-Ghost/solid-funicular"><img src="./assets/arc-agentx-vision.svg" width="49%" alt="AgentX Vision — In-browser AR object detection with on-device Whisper voice control"/></a>
   <a href="https://github.com/Arrow-Ghost/ChatPal2.0"><img src="./assets/arc-chatpal-2-0.svg" width="49%" alt="ChatPal 2.0 — Flask + Socket.IO chat with rooms, polls, uploads and in-chat Gemini/GPT"/></a>
 </p>
 <p align="center">
-  <a href="https://github.com/Arrow-Ghost/VTOP"><img src="./assets/arc-vtop-portal.svg" width="49%" alt="VTOP Portal — Full-stack university portal for four roles with RBAC"/></a>
   <a href="https://github.com/Arrow-Ghost/ffcs-simulator-fall2026-27"><img src="./assets/arc-ffcs-simulator.svg" width="49%" alt="FFCS Simulator — Timed VIT course-registration simulator with clash detection"/></a>
+  <a href="https://github.com/Arrow-Ghost/Smart-Irrigation-System"><img src="./assets/arc-smart-irrigation.svg" width="49%" alt="Smart Irrigation — Arduino plant waterer with overwatering prevention and fault detection"/></a>
 </p>
 <p align="center">
-  <a href="https://github.com/Arrow-Ghost/Smart-Irrigation-System"><img src="./assets/arc-smart-irrigation.svg" width="49%" alt="Smart Irrigation — Arduino plant waterer with overwatering prevention and fault detection"/></a>
   <a href="https://github.com/Arrow-Ghost/Offline-notes"><img src="./assets/arc-offline-notes.svg" width="49%" alt="Offline Notes — Offline-first PWA notes with IndexedDB and background sync"/></a>
 </p>
 
-<p align="center"><img src="./assets/h-05.svg" width="100%" alt="Chapter 05: Mission Log. the story so far"/></p>
-<p align="center"><img src="./assets/mission-log.svg" width="100%" alt="Mission log: web developer for the 10th IEEE International Test Conference India 2026; IEEE Junior Core Member at VIT Vellore; Smart India Hackathon 2025 internal finalist; All India Rank 1 in the National AI Idea-thon by 1M1B; podium at IIT Delhi Code Day hackathon; President of Cyber Genie, ranked the #1 club three years running; writing a research paper and a book on quantum computing game development."/></p>
-
-<p align="center"><img src="./assets/h-06.svg" width="100%" alt="Chapter 06: Telemetry. live signal from github"/></p>
+<p align="center"><img src="./assets/h-05.svg" width="100%" alt="Chapter 05: Telemetry. live signal from github"/></p>
 <p align="center"><img src="./assets/telemetry.svg" width="100%" alt="Live GitHub telemetry: contributions, streaks and the contribution calendar."/></p>
 <p align="center"><img src="./assets/langs.svg" width="100%" alt="Language spectrum by bytes of code."/></p>
 <p align="center"><img src="https://raw.githubusercontent.com/Arrow-Ghost/Arrow-Ghost/output/snake.svg" width="100%" alt="A snake eating the contribution graph."/></p>
-
-<p align="center"><img src="./assets/credits.svg" width="100%" alt="Closing credits. Directed by Shrish Verma. To be continued."/></p>
 
 <p align="center"><sub>every pixel above is a hand-built SVG generated by <a href="./scripts">/scripts</a> · fonts: Source Sans / Source Code (SIL OFL)</sub></p>

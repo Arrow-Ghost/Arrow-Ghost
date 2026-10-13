@@ -9,7 +9,7 @@ as a series, and each one carries its own animated vector illustration:
   OP-02 ShadowADJ      radial FFT sphere, live meters, scrolling speech waveform
   OP-03 Quantum Maze   perspective neon maze whose doors are qubits, synced circuit + register
   OP-04 PhishGuard.js  radar + shield, DOM script being stripped, scrolling block/allow log
-  OP-05 Event Horizon  shadow, photon ring, Doppler-beamed accretion disk, lensed starfield
+  OP-05 Kaledo         particle network: verified student skills -> weighted match engine -> ranked roles
   OP-06 Not Only SQL   hash ring, 3 replica-set shards, replication pulses, failover loop
 
 Run from scripts/:  python build_projects.py
@@ -53,11 +53,11 @@ COPY = {
                 "block token exfiltration, a MutationObserver strips injected scripts, and telemetry "
                 "streams to a live SOC dashboard.",
     },
-    "event-horizon": {
-        "tag": "PHYSICS — WEBGL2 · GLSL",
-        "desc": "A cinematic scroll story around a real-time black hole. A WebGL2 shader traces every "
-                "pixel's photon path through Schwarzschild spacetime, so the shadow, photon ring and "
-                "lensed disk come from the physics.",
+    "kaledo": {
+        "tag": "FULL-STACK — CAREER PLATFORM",
+        "desc": "An academia × industry portal for students, recruiters and institutions. Supabase "
+                "auth with RLS-enforced roles, OTP institution verification, and a skill-match "
+                "engine that ranks internships by weighted fit.",
     },
     "nosql": {
         "tag": "DATA SYSTEMS — WEBGL SEMINAR",
@@ -971,157 +971,119 @@ def art_phish(d, a1, a2):
     return "".join(o)
 
 
-# ================================================== OP-05 EVENT HORIZON ===
+# ======================================================== OP-05 KALEDO ===
 
-def art_hole(d, a1, a2):
+def art_kaledo(d, a1, a2):
+    """Skill-match engine: a verified student's skills feed a weighted matcher
+    that ranks live internships, over a drifting particle network."""
     o = []
-    cx, cy, Rs = 280, 204, 56
-    blur(d, "hB1", 2)
-    blur(d, "hB2", 7)
-    blur(d, "hB3", 20)
-    blur(d, "hB4", 40)
-    glow(d, "hGl", 2.2, 2)
-    # nebula
-    o.append(f'<g filter="url(#hB4)"><ellipse cx="90" cy="90" rx="160" ry="90" fill="{a1}" opacity=".30"/>'
-             f'<ellipse cx="500" cy="330" rx="170" ry="90" fill="{C["magenta"]}" opacity=".13"/>'
-             f'<ellipse cx="470" cy="70" rx="120" ry="60" fill="{a2}" opacity=".12"/></g>')
-    # lensed starfield (point-lens primary + secondary images)
-    rnd = random.Random(55)
-    thE = 92.0
-    st = []
-    for _ in range(170):
-        x, y = rnd.uniform(0, AW), rnd.uniform(0, AH)
-        dx, dy = x - cx, y - cy
-        dd = math.hypot(dx, dy) + 1e-6
-        ux, uy = dx / dd, dy / dd
-        br = rnd.uniform(.25, .9)
-        r = rnd.uniform(.4, 1.25)
-        for sgn in (1, -1):
-            dp = (dd + sgn * math.sqrt(dd * dd + 4 * thE * thE)) / 2
-            if abs(dp) < Rs * 1.08:
-                continue
-            px, py = cx + ux * dp, cy + uy * dp
-            mag = br * (1 if sgn > 0 else .45)
-            stretch = thE * thE / (abs(dp) * abs(dp))
-            if stretch > .35 and abs(dp) < 220:
-                # tangential arc
-                ang = math.atan2(py - cy, px - cx)
-                half = min(.22, stretch * .09)
-                a0, a_1 = ang - half, ang + half
-                rr = abs(dp)
-                st.append(f'<path d="M{f(cx + rr * math.cos(a0))} {f(cy + rr * math.sin(a0))}A{f(rr)} {f(rr)} 0 0 1 {f(cx + rr * math.cos(a_1))} {f(cy + rr * math.sin(a_1))}" '
-                          f'stroke="#fff" stroke-opacity="{mag:.2f}" stroke-width="{f(r * .9)}" stroke-linecap="round"/>')
-            elif sgn > 0:
-                st.append(f'<circle cx="{f(px)}" cy="{f(py)}" r="{f(r)}" fill="#fff" opacity="{mag:.2f}"/>')
-    o.append(f'<g>{"".join(st)}</g>')
-    o.append(f'<circle cx="{cx}" cy="{cy}" r="230" fill="{rad(d, "hHalo", [(0, C["ice"], .16), (.4, a1, .07), (1, a1, 0)])}"/>')
+    glow(d, "kGl", 3.2, 2)
+    blur(d, "kBl", 10)
 
-    # ---- disk geometry -------------------------------------------------------------------
-    tilt = .135
-    NR = 24
-    r_in, r_out = 84, 252
-    col_ramp = [(0, "#FFFFFF"), (.12, "#E4FCFF"), (.3, C["ice"]), (.55, C["cyan"]), (.8, a1), (1, C["magenta"])]
-    rnd = random.Random(8)
-    rings = []
-    for k in range(NR):
-        t = k / (NR - 1)
-        rx = r_in + (r_out - r_in) * t ** 1.15
-        ry = rx * tilt
-        col = ramp(col_ramp, t)
-        op = .95 * (1 - t) ** 1.25 + .1
-        sw = 2.2 + 2.6 * t
-        dash = [rnd.randint(8, 46), rnd.randint(4, 16), rnd.randint(2, 18), rnd.randint(4, 22)]
-        per = sum(dash)
-        dur = 3.2 * (rx / r_in) ** 1.5
-        gid = f"hD{k}"
-        d.defs.append(f'<linearGradient id="{gid}" gradientUnits="userSpaceOnUse" x1="{f(cx - rx)}" y1="0" x2="{f(cx + rx)}" y2="0">'
-                      f'<stop offset="0" stop-color="{mix(col, "#FFFFFF", .55)}" stop-opacity="{min(1, op * 1.5):.2f}"/>'
-                      f'<stop offset=".45" stop-color="{col}" stop-opacity="{op:.2f}"/>'
-                      f'<stop offset="1" stop-color="{mix(col, C["magenta"], .6)}" stop-opacity="{op * .32:.2f}"/></linearGradient>')
-        rings.append((rx, ry, gid, sw, dash, per, dur))
+    # ---- particle network (nod to the Three.js hero) -------------------------------------
+    rnd = random.Random(21)
+    pts = [(rnd.uniform(10, AW - 10), rnd.uniform(48, AH - 8)) for _ in range(54)]
+    links = []
+    for i, (x1, y1) in enumerate(pts):
+        for x2, y2 in pts[i + 1:]:
+            dd = math.hypot(x2 - x1, y2 - y1)
+            if dd < 74:
+                links.append(f'<line x1="{f(x1)}" y1="{f(y1)}" x2="{f(x2)}" y2="{f(y2)}" stroke-opacity="{f(.32 * (1 - dd / 74))}"/>')
+    dots = "".join(f'<circle cx="{f(x)}" cy="{f(y)}" r="{f(rnd.uniform(.8, 1.9))}" fill="{a2 if k % 3 else a1}" opacity="{f(rnd.uniform(.3, .8))}"/>'
+                   for k, (x, y) in enumerate(pts))
+    o.append(f'<g opacity=".55"><g stroke="{a2}" stroke-width=".8">{"".join(links)}</g>{dots}'
+             f'<animateTransform attributeName="transform" type="translate" values="0 0;-10 6;0 0" dur="16s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1"/></g>')
 
-    def half(rx, ry, front):
-        if front:
-            return f"M{f(cx - rx)} {cy}A{f(rx)} {f(ry)} 0 0 0 {f(cx + rx)} {cy}"
-        return f"M{f(cx + rx)} {cy}A{f(rx)} {f(ry)} 0 0 0 {f(cx - rx)} {cy}"
+    # ---- student profile card ---------------------------------------------------------------
+    sx, sy, sw, sh = 22, 60, 178, 232
+    o.append(f'<rect x="{sx}" y="{sy}" width="{sw}" height="{sh}" rx="10" fill="#07080F" fill-opacity=".93" stroke="{C["line2"]}"/>')
+    ax_, ay_ = sx + 30, sy + 32
+    o.append(f'<circle cx="{ax_}" cy="{ay_}" r="17" fill="{mix(a1, "#000000", .7)}" stroke="{a1}" stroke-width="1.4"/>'
+             f'<circle cx="{ax_}" cy="{ay_ - 4}" r="5.5" fill="{a1}"/>'
+             f'<path d="M{ax_ - 9} {ay_ + 10}c2-7 16-7 18 0" stroke="{a1}" stroke-width="2.4" fill="none" stroke-linecap="round"/>')
+    o.append(d.text("STUDENT", sx + 56, sy + 27, "mono-b", 13, C["text"], tracking=1.6))
+    o.append(f'<g class="breathe"><rect x="{sx + 56}" y="{sy + 35}" width="104" height="18" rx="9" fill="{C["lime"]}" fill-opacity=".1" stroke="{C["lime"]}" stroke-opacity=".6"/></g>')
+    o.append(tick(sx + 67, sy + 44, 4, C["lime"], 1.6))
+    o.append(d.text("OTP VERIFIED", sx + 77, sy + 48.5, "mono-b", 11, C["lime"], tracking=.6))
+    o.append(f'<line x1="{sx}" y1="{sy + 66}" x2="{sx + sw}" y2="{sy + 66}" stroke="{C["line"]}"/>')
+    o.append(d.text("SKILL PROFILE", sx + 14, sy + 88, "mono-b", 12, C["muted"], tracking=1.8))
+    skills = [("Python", .92), ("React", .84), ("SQL", .76), ("ML", .62), ("Docker", .22)]
+    rows_y = []
+    for k, (nm, v) in enumerate(skills):
+        y = sy + 114 + k * 25
+        rows_y.append(y - 5)
+        gap = v < .4
+        col = C["amber"] if gap else a1
+        o.append(d.text(nm, sx + 14, y, "sans-sb", 14.5, C["text"] if not gap else C["amber"]))
+        bx, bw = sx + 78, 86
+        o.append(f'<rect x="{bx}" y="{y - 9}" width="{bw}" height="5" rx="2.5" fill="{C["line2"]}"/>')
+        o.append(f'<rect x="{bx}" y="{y - 9}" width="{f(bw * v)}" height="5" rx="2.5" fill="{col}">'
+                 f'<animate attributeName="width" values="0;{f(bw * v)}" dur="1.2s" begin="{.6 + k * .15:.2f}s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines=".2 .8 .2 1"/></rect>')
+        if gap:
+            o.append(d.text("GAP", sx + sw - 12, y - 12, "mono-b", 10.5, C["amber"], "end", 1))
 
-    def disk(front):
-        out = []
-        for rx, ry, gid, sw, dash, per, dur in rings:
-            out.append(f'<path d="{half(rx, ry, front)}" stroke="url(#{gid})" stroke-width="{f(sw)}" fill="none" '
-                       f'stroke-dasharray="{" ".join(map(str, dash))}"><animate attributeName="stroke-dashoffset" values="0;-{per * 3}" '
-                       f'dur="{f(dur * 3)}s" repeatCount="indefinite"/></path>')
-        return "".join(out)
+    # ---- match engine core -------------------------------------------------------------------------
+    ex, ey = 284, 172
+    hexp = "M" + "L".join(f"{f(ex + 26 * math.cos(math.radians(60 * k + 30)))} {f(ey + 26 * math.sin(math.radians(60 * k + 30)))}" for k in range(6)) + "Z"
+    # skill -> engine edges (weight = skill level)
+    for k, (nm, v) in enumerate(skills):
+        y = rows_y[k]
+        pth = f"M{sx + sw} {y}C{sx + sw + 44} {y} {ex - 60} {ey} {ex - 27} {ey}"
+        col = C["amber"] if v < .4 else a1
+        o.append(f'<path d="{pth}" stroke="{col}" stroke-opacity="{f(.18 + .5 * v)}" stroke-width="{f(.8 + 2.2 * v)}" fill="none"/>')
+        if v >= .4:
+            o.append(f'<circle r="2.6" fill="{mix(col, "#FFFFFF", .4)}" filter="url(#kGl)"><animateMotion path="{pth}" dur="{2.2 + k * .25:.2f}s" begin="-{k * .5:.1f}s" repeatCount="indefinite"/></circle>')
+    o.append(f'<circle cx="{ex}" cy="{ey}" r="44" fill="{a1}" opacity=".16" filter="url(#kBl)"/>')
+    o.append(f'<g><circle cx="{ex}" cy="{ey}" r="36" stroke="{a1}" stroke-opacity=".55" stroke-dasharray="3 6" fill="none"/>'
+             f'<animateTransform attributeName="transform" type="rotate" values="0 {ex} {ey};360 {ex} {ey}" dur="14s" repeatCount="indefinite"/></g>')
+    o.append(f'<g><circle cx="{ex}" cy="{ey}" r="31" stroke="{a2}" stroke-opacity=".5" stroke-dasharray="14 10" fill="none"/>'
+             f'<animateTransform attributeName="transform" type="rotate" values="360 {ex} {ey};0 {ex} {ey}" dur="9s" repeatCount="indefinite"/></g>')
+    o.append(f'<path d="{hexp}" fill="#0A0814" stroke="{mix(a1, "#FFFFFF", .2)}" stroke-width="1.8" filter="url(#kGl)"/>')
+    o.append(d.text("Σw", ex, ey + 6, "mono-b", 17, a1, "middle"))
+    o.append(d.text("MATCH ENGINE", ex, ey + 62, "mono-b", 11.5, C["soft"], "middle", 1.6))
+    o.append(cyc_text(d, ["SCORING ROLES…", "RANKING BY FIT…", "MATCHES READY ✓"], ex, ey + 78, "mono", 11, C["muted"], 6, "middle", .6))
 
-    bloom_g = f"url(#{rings[3][2]})"
-    # back half of the disk (hidden behind the hole, peeks out at the sides)
-    o.append(f'<g opacity=".85">{disk(False)}</g>')
-    # lensed image of the far disk: the arc over the top (and a faint one beneath)
-    NA = 12
-    arcs_top, arcs_bot, arc_bloom = [], [], []
-    for k in range(NA):
-        t = k / (NA - 1)
-        r = Rs + 5 + 42 * t ** 1.2
-        col = ramp(col_ramp, .05 + t * .8)
-        op = .95 * (1 - t) ** 1.1 + .08
-        gid = f"hA{k}"
-        d.defs.append(f'<linearGradient id="{gid}" gradientUnits="userSpaceOnUse" x1="{f(cx - r)}" y1="0" x2="{f(cx + r)}" y2="0">'
-                      f'<stop offset="0" stop-color="{mix(col, "#FFFFFF", .5)}" stop-opacity="{min(1, op * 1.4):.2f}"/>'
-                      f'<stop offset=".5" stop-color="{col}" stop-opacity="{op:.2f}"/>'
-                      f'<stop offset="1" stop-color="{mix(col, C["magenta"], .55)}" stop-opacity="{op * .4:.2f}"/></linearGradient>')
-        dash = [rnd.randint(10, 40), rnd.randint(3, 12), rnd.randint(4, 20), rnd.randint(3, 10)]
-        per = sum(dash)
-        ry = r * .9
-        arcs_top.append(f'<path d="M{f(cx + r)} {cy}A{f(r)} {f(ry)} 0 0 0 {f(cx - r)} {cy}" stroke="url(#{gid})" stroke-width="{f(2 + 2.2 * t)}" fill="none" '
-                        f'stroke-dasharray="{" ".join(map(str, dash))}"><animate attributeName="stroke-dashoffset" values="0;-{per * 3}" dur="{f(4.5 + 6 * t)}s" repeatCount="indefinite"/></path>')
-        if k < 5:
-            rb = Rs + 2.5 + k * 2.4
-            arcs_bot.append(f'<path d="M{f(cx - rb)} {cy}A{f(rb)} {f(rb * .93)} 0 0 0 {f(cx + rb)} {cy}" stroke="url(#{gid})" stroke-width="1.4" fill="none" opacity="{.5 - k * .08:.2f}"/>')
-    arc_bloom.append(f'<path d="M{cx + Rs + 26} {cy}A{Rs + 26} {f((Rs + 26) * .9)} 0 0 0 {cx - Rs - 26} {cy}" stroke="{C["ice"]}" stroke-width="30" opacity=".35" fill="none" filter="url(#hB3)"/>')
-    o.append("".join(arc_bloom))
-    o.append(f'<g>{"".join(arcs_top)}</g>')
-    # shadow + photon ring
-    o.append(f'<circle cx="{cx}" cy="{cy}" r="{Rs}" fill="#000"/>')
-    pr = lin(d, "hPr", [(0, "#FFFFFF", 1), (.5, C["ice"], .9), (1, C["magenta"], .55)], f(cx - Rs), 0, f(cx + Rs), 0, ' gradientUnits="userSpaceOnUse"')
-    o.append(f'<circle cx="{cx}" cy="{cy}" r="{Rs + 1.6}" stroke="{pr}" stroke-width="3" fill="none" filter="url(#hB2)" opacity=".9"/>')
-    o.append(f'<circle cx="{cx}" cy="{cy}" r="{Rs + 1.6}" stroke="{pr}" stroke-width="1.3" fill="none"><animate attributeName="stroke-opacity" values="1;.7;1" dur="5s" repeatCount="indefinite"/></circle>')
-    o.append(f'<circle cx="{cx}" cy="{cy}" r="{Rs + 4.2}" stroke="#fff" stroke-opacity=".22" stroke-width=".8" fill="none"/>')
-    o.append(f'<g>{"".join(arcs_bot)}</g>')
-    # front half of the disk crossing in front of the shadow, with bloom underneath
-    o.append(f'<ellipse cx="{cx}" cy="{cy}" rx="150" ry="{f(150 * tilt)}" stroke="{bloom_g}" stroke-width="34" fill="none" opacity=".55" filter="url(#hB3)"/>')
-    o.append(f'<ellipse cx="{cx}" cy="{cy}" rx="110" ry="{f(110 * tilt)}" stroke="#fff" stroke-width="6" fill="none" opacity=".25" filter="url(#hB2)"/>')
-    o.append(f'<g>{disk(True)}</g>')
-    # anamorphic flare on the approaching (bright) side
-    o.append(f'<g style="mix-blend-mode:screen"><ellipse cx="{cx - 96}" cy="{cy + 4}" rx="240" ry="2.2" fill="{C["ice"]}" filter="url(#hB1)">'
-             f'<animate attributeName="opacity" values=".35;.8;.35" dur="7s" repeatCount="indefinite"/></ellipse>'
-             f'<circle cx="{cx - 96}" cy="{cy + 4}" r="5" fill="#fff" opacity=".8" filter="url(#hB1)"/></g>')
+    # ---- ranked opportunities ---------------------------------------------------------------------
+    jobs = [("ML Intern", "INTERNSHIP · 6 MO", 92), ("Frontend Intern", "INTERNSHIP · REMOTE", 87), ("Data Analyst", "PLACEMENT · FULL-TIME", 71)]
+    jx, jw, jh = 368, 170, 62
+    for k, (title, meta, pct) in enumerate(jobs):
+        jy = 64 + k * 76
+        best = k == 0
+        mid = jy + jh / 2
+        pth = f"M{ex + 27} {ey}C{ex + 60} {ey} {jx - 40} {mid} {jx} {mid}"
+        o.append(f'<path d="{pth}" stroke="{a1 if best else a2}" stroke-opacity="{.75 if best else .35}" stroke-width="{2.6 if best else 1.4}" fill="none"/>')
+        o.append(f'<circle r="2.8" fill="{a1 if best else a2}" filter="url(#kGl)"><animateMotion path="{pth}" dur="{1.6 + k * .5:.1f}s" begin="-{k * .4:.1f}s" repeatCount="indefinite"/></circle>')
+        card = [f'<rect x="{jx}" y="{jy}" width="{jw}" height="{jh}" rx="9" fill="#07080F" fill-opacity=".94" stroke="{a1 if best else C["line2"]}" stroke-opacity="{.9 if best else 1}"/>']
+        if best:
+            o.append(f'<rect x="{jx - 3}" y="{jy - 3}" width="{jw + 6}" height="{jh + 6}" rx="11" stroke="{a1}" stroke-opacity=".5" fill="none" class="breathe" filter="url(#kGl)"/>')
+        card.append(d.text(title, jx + 12, jy + 23, "sans-sb", 15.5, C["text"]))
+        card.append(d.text(meta, jx + 12, jy + 41, "mono", 10.5, C["muted"], tracking=.5))
+        card.append(d.text(f"{pct}%", jx + jw - 12, jy + 24, "mono-b", 16, a1 if best else C["soft"], "end"))
+        card.append(f'<rect x="{jx + 12}" y="{jy + 50}" width="{jw - 24}" height="3" rx="1.5" fill="{C["line2"]}"/>')
+        card.append(f'<rect x="{jx + 12}" y="{jy + 50}" width="{f((jw - 24) * pct / 100)}" height="3" rx="1.5" fill="{a1 if best else a2}">'
+                    f'<animate attributeName="width" values="0;{f((jw - 24) * pct / 100)}" dur="1.2s" begin="{1.4 + k * .2:.1f}s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines=".2 .8 .2 1"/></rect>')
+        o.append("".join(card))
+        if best:
+            o.append(d.text("#1 · BEST MATCH", jx + jw, jy - 8, "mono-b", 10.5, a1, "end", 1.2))
 
-    # ---- HUD callouts --------------------------------------------------------------------
-    hud = []
-    a = math.radians(-38)
-    p1 = (cx + (Rs + 2) * math.cos(a), cy + (Rs + 2) * math.sin(a))
-    hud.append(f'<path d="M{f(p1[0])} {f(p1[1])}L{f(p1[0] + 44)} {f(p1[1] - 52)}H{AW - 30}" stroke="{C["ice"]}" stroke-opacity=".55" fill="none"/>'
-               f'<circle cx="{f(p1[0])}" cy="{f(p1[1])}" r="2.5" fill="{C["ice"]}"/>')
-    hud.append(d.text("PHOTON RING · b ≈ 2.6 rs", AW - 30, p1[1] - 58, "mono", 13, C["ice"], "end", 1))
-    pi = (cx + r_in, cy)
-    hud.append(f'<path d="M{f(pi[0])} {f(pi[1] + 8)}L{f(pi[0] + 30)} {cy + 62}H{AW - 30}" stroke="{C["muted"]}" stroke-opacity=".7" fill="none"/>'
-               f'<circle cx="{f(pi[0])}" cy="{f(pi[1] + 8)}" r="2.2" fill="{C["muted"]}"/>')
-    hud.append(d.text("ISCO · 3 rs", AW - 30, cy + 78, "mono", 13, C["muted"], "end", 1))
-    hud.append(d.text("◆ BLUESHIFT", 30, cy + 58, "mono-b", 13, C["ice"], tracking=1.6))
-    hud.append(d.text("approaching", 30, cy + 76, "mono", 13, C["muted"], tracking=.6))
-    # telemetry: a slow dive toward the horizon
-    vals = [(6.0, .913, .41), (4.0, .866, .50), (3.0, .816, .58), (2.0, .707, .71), (1.5, .577, .82), (1.2, .408, .91)]
-    rows = [f"r/rs {r:4.2f}   CLOCK {c:.2f}×   v_esc {v:.2f}c" for r, c, v in vals]
-    hud.append(f'<line x1="22" y1="342" x2="{AW - 22}" y2="342" stroke="{C["line"]}"/>')
-    hud.append(d.text("TELEMETRY", 28, 368, "mono-b", 13, a1 if a1 != C["violet"] else mix(a1, "#FFFFFF", .3), tracking=2.4))
-    hud.append(cyc_text(d, rows, 28, 390, "mono", 14, C["soft"], 12))
-    hud.append(d.text("SCHWARZSCHILD", AW - 28, 368, "mono", 13, C["muted"], "end", 2))
-    hud.append(d.text("PER-PIXEL GR", AW - 28, 390, "mono", 13, C["muted"], "end", 2))
-    o.append("".join(hud))
-    # gentle camera breathing on the whole scene
-    return (f'<g transform="translate({cx} {cy})"><g><animateTransform attributeName="transform" type="scale" values="1;1.025;1" dur="16s" '
-            f'repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1"/><g transform="translate({-cx} {-cy})">'
-            + "".join(o[:-1]) + "</g></g></g>" + o[-1])
+    # ---- bottom strip: skill gap + identity layer -----------------------------------------------------
+    by_, bh = 306, 76
+    o.append(f'<rect x="22" y="{by_}" width="{AW - 44}" height="{bh}" rx="10" fill="#05060C" fill-opacity=".94" stroke="{C["line2"]}"/>')
+    o.append(f'<line x1="{AW / 2}" y1="{by_ + 14}" x2="{AW / 2}" y2="{by_ + bh - 14}" stroke="{C["line"]}"/>')
+    o.append(d.text("SKILL GAP", 38, by_ + 26, "mono-b", 12, C["amber"], tracking=2))
+    gx = 38
+    for g in ("Docker", "System Design"):
+        gw = d.width(g, "sans-sb", 13.5) + 20
+        o.append(f'<rect x="{f(gx)}" y="{by_ + 38}" width="{f(gw)}" height="24" rx="12" fill="{C["amber"]}" fill-opacity=".08" stroke="{C["amber"]}" stroke-opacity=".55"/>'
+                 + d.text(g, gx + 10, by_ + 54.5, "sans-sb", 13.5, C["amber"]))
+        gx += gw + 8
+    rx_ = AW / 2 + 18
+    o.append(d.text("IDENTITY", rx_, by_ + 26, "mono-b", 12, a2, tracking=2))
+    shp = f"M{rx_ + 11} {by_ + 37}l10 4v8c0 7-5 11-10 13c-5-2-10-6-10-13v-8z"
+    o.append(f'<path d="{shp}" stroke="{a2}" stroke-width="1.5" fill="{a2}" fill-opacity=".12"/>' + tick(rx_ + 11, by_ + 50, 4, a2, 1.6))
+    o.append(d.text("Supabase Auth · RLS", rx_ + 32, by_ + 48, "sans-sb", 14, C["text"]))
+    o.append(d.text("ROLES ENFORCED SERVER-SIDE", rx_ + 32, by_ + 65, "mono", 10.5, C["muted"], tracking=.6))
+    return "".join(o)
 
 
 # ========================================================== OP-06 NOSQL ===
@@ -1289,7 +1251,7 @@ ARTS = {
     "waveform": (art_shadow, "SHADOWADJ // LIVE DELIVERY", "16 kHz · VAD"),
     "maze": (art_maze, "QUBIT DOORS // QISKIT AER", "3 QUBITS"),
     "shield": (art_phish, "RUNTIME SHIELD // ARMED", "ZERO-TRUST"),
-    "blackhole": (art_hole, "GR RAY-MARCH // GLSL", "WEBGL2"),
+    "skillmatch": (art_kaledo, "SKILL MATCH // WEIGHTED", "ACADEMIA × INDUSTRY"),
     "cluster": (art_nosql, "CLUSTER // 3 SHARDS × RS", "HASH ROUTING"),
 }
 
@@ -1398,7 +1360,7 @@ CARD_CSS = """
 
 
 def build_card(i, p):
-    a1, a2 = ACCENT[p["category"]]
+    a1, a2 = p.get("accent") or ACCENT[p["category"]]
     cp = COPY[p["key"]]
     d = Doc(W, H, title=f'{p["code"]} — {p["title"]}: {p["tagline"]}')
     d.css.append(CARD_CSS)
