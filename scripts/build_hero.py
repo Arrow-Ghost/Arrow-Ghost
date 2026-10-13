@@ -250,7 +250,7 @@ def build():
         yy = BAR + 54 + i * 22
         out.append(d.text(k, 46, yy, "mono-b", 11.5, C["cyan"], tracking=2))
         out.append(d.text(v, 84, yy, "mono", 11.5, C["muted"], tracking=2))
-    for i, (k, v) in enumerate([("62", "PUBLIC REPOS"), ("06", "LIVE DEPLOYS"), ("04", "QUANTUM GAMES")]):
+    for i, (k, v) in enumerate([(f"{public_repos():02d}", "PUBLIC REPOS"), ("06", "LIVE DEPLOYS"), ("04", "QUANTUM GAMES")]):
         yy = BAR + 54 + i * 22
         out.append(d.text(v, W - 46, yy, "mono", 11.5, C["muted"], "end", 2))
         vw = d.width(v, "mono", 11.5, 2)
@@ -260,6 +260,18 @@ def build():
     out.append("</g>")  # frame clip
     out.append(f'<rect x=".5" y=".5" width="{W - 1}" height="{H - 1}" rx="22" stroke="{C["line2"]}" fill="none"/>')
     return d
+
+
+def public_repos(fallback=61):
+    """Live public-repo count for the HUD, so the number never goes stale on a rebuild."""
+    import json
+    import urllib.request
+    try:
+        req = urllib.request.Request("https://api.github.com/users/Arrow-Ghost", headers={"User-Agent": "arrow-ghost-build"})
+        with urllib.request.urlopen(req, timeout=10) as r:
+            return int(json.load(r)["public_repos"])
+    except Exception:
+        return fallback
 
 
 def timecode(d, right_x, y):
