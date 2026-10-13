@@ -13,7 +13,7 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 
 BUILDERS = ["build_hero", "build_headers", "build_buttons", "build_terminal", "build_arsenal",
-            "build_projects", "build_archive", "build_readme"]
+            "build_projects", "build_archive", "build_credits", "build_readme"]
 
 env = dict(os.environ, PYTHONIOENCODING="utf-8")
 failed = []

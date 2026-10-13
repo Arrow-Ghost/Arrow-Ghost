@@ -157,6 +157,9 @@ ARCHIVE = [
     {"title": "Smart Irrigation", "category": "iot-embedded", "line": "Arduino plant waterer with overwatering prevention and fault detection", "repo": f"{GH}/Smart-Irrigation-System", "live": ""},
 ]
 
+# ---------------------------------------------------------- closing card --
+CREDITS_TAG = "No qubits were harmed in the making of this profile."
+
 # ----------------------------------------------------------- section heads --
 SECTIONS = [
     ("01", "WHO AM I", "identity.dossier"),
