@@ -1,0 +1,30 @@
+name: snake
+
+# Draws the contribution-eating snake into the `output` branch (never main, so a push trigger is safe).
+on:
+  schedule:
+    - cron: "41 */12 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: Platane/snk/svg-only@v3
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          outputs: |
+            dist/snake.svg?color_snake=#FF3D9A&color_dots=#1B2140,#123E66,#1C7BB0,#2BE4FF,#9CF3FF
+
+      - uses: crazy-max/ghaction-github-pages@v5
+        with:
+          target_branch: output
+          build_dir: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
