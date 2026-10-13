@@ -155,7 +155,6 @@ ARCHIVE = [
     {"title": "ChatPal 2.0", "category": "fullstack-web", "line": "Flask + Socket.IO chat with rooms, polls, uploads and in-chat Gemini/GPT", "repo": f"{GH}/ChatPal2.0", "live": ""},
     {"title": "FFCS Simulator", "category": "fullstack-web", "line": "Timed VIT course-registration simulator with clash detection", "repo": f"{GH}/ffcs-simulator-fall2026-27", "live": ""},
     {"title": "Smart Irrigation", "category": "iot-embedded", "line": "Arduino plant waterer with overwatering prevention and fault detection", "repo": f"{GH}/Smart-Irrigation-System", "live": ""},
-    {"title": "Offline Notes", "category": "fullstack-web", "line": "Offline-first PWA notes with IndexedDB and background sync", "repo": f"{GH}/Offline-notes", "live": ""},
 ]
 
 # ----------------------------------------------------------- section heads --

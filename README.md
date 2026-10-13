@@ -59,9 +59,6 @@
   <a href="https://github.com/Arrow-Ghost/ffcs-simulator-fall2026-27"><img src="./assets/arc-ffcs-simulator.svg" width="49%" alt="FFCS Simulator — Timed VIT course-registration simulator with clash detection"/></a>
   <a href="https://github.com/Arrow-Ghost/Smart-Irrigation-System"><img src="./assets/arc-smart-irrigation.svg" width="49%" alt="Smart Irrigation — Arduino plant waterer with overwatering prevention and fault detection"/></a>
 </p>
-<p align="center">
-  <a href="https://github.com/Arrow-Ghost/Offline-notes"><img src="./assets/arc-offline-notes.svg" width="49%" alt="Offline Notes — Offline-first PWA notes with IndexedDB and background sync"/></a>
-</p>
 
 <p align="center"><img src="./assets/h-05.svg" width="100%" alt="Chapter 05: Telemetry. live signal from github"/></p>
 <p align="center"><img src="./assets/telemetry.svg" width="100%" alt="Live GitHub telemetry: contributions, streaks and the contribution calendar."/></p>
