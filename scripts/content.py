@@ -1,7 +1,4 @@
 """Single source of truth for every word on the profile.
-
-Facts come from Shrish's resume and from reading the code of each repo.
-Edit here, re-run `python scripts/build_all.py`, commit.
 """
 
 GH = "https://github.com/Arrow-Ghost"
