@@ -1,5 +1,5 @@
 <!--
-  ARROW—GHOST · the profile of Shrish Verma
+  ARROW—GHOST · Shrish Verma
   Every graphic on this page is a hand-generated, self-contained SVG — see /scripts.
   No third-party stat cards. Telemetry refreshes itself via GitHub Actions.
   If you're reading the source: hi. Respect.
